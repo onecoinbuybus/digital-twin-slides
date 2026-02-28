@@ -33,27 +33,33 @@ export default function App() {
 }
 
 function NavToggle({ page }) {
+  const navigate = (hash) => (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    window.location.hash = hash
+  }
+
   return (
     <div style={{
-      position: 'fixed', top: 12, right: 16, zIndex: 9999,
-      display: 'flex', gap: 4,
-      background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(12px)',
-      borderRadius: 8, padding: 3, border: '1px solid rgba(255,255,255,0.08)',
+      position: 'fixed', top: 14, right: 20, zIndex: 99999,
+      display: 'flex', gap: 6,
+      background: 'rgba(15,15,25,0.92)', backdropFilter: 'blur(16px)',
+      borderRadius: 10, padding: 5,
+      border: '1px solid rgba(129,140,248,0.25)',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
     }}>
-      <a href="#" onClick={(e) => { e.preventDefault(); window.location.hash = ''; }} style={{
-        padding: '5px 14px', borderRadius: 6, fontSize: 11, fontWeight: 600,
-        textDecoration: 'none', cursor: 'pointer',
-        background: page === 'slides' ? 'rgba(129,140,248,0.13)' : 'transparent',
-        color: page === 'slides' ? '#c4b5fd' : '#64748b',
-        border: page === 'slides' ? '1px solid rgba(129,140,248,0.2)' : '1px solid transparent',
-      }}>Slides</a>
-      <a href="#roadmap" onClick={(e) => { e.preventDefault(); window.location.hash = 'roadmap'; }} style={{
-        padding: '5px 14px', borderRadius: 6, fontSize: 11, fontWeight: 600,
-        textDecoration: 'none', cursor: 'pointer',
-        background: page === 'roadmap' ? 'rgba(129,140,248,0.13)' : 'transparent',
-        color: page === 'roadmap' ? '#c4b5fd' : '#64748b',
-        border: page === 'roadmap' ? '1px solid rgba(129,140,248,0.2)' : '1px solid transparent',
-      }}>Roadmap</a>
+      <button onClick={navigate('')} style={{
+        padding: '7px 18px', borderRadius: 7, fontSize: 13, fontWeight: 700,
+        cursor: 'pointer', border: 'none', fontFamily: 'Inter, system-ui, sans-serif',
+        background: page === 'slides' ? 'rgba(129,140,248,0.25)' : 'transparent',
+        color: page === 'slides' ? '#e0e7ff' : '#94a3b8',
+      }}>Slides</button>
+      <button onClick={navigate('roadmap')} style={{
+        padding: '7px 18px', borderRadius: 7, fontSize: 13, fontWeight: 700,
+        cursor: 'pointer', border: 'none', fontFamily: 'Inter, system-ui, sans-serif',
+        background: page === 'roadmap' ? 'rgba(110,231,183,0.2)' : 'transparent',
+        color: page === 'roadmap' ? '#6ee7b7' : '#94a3b8',
+      }}>Roadmap</button>
     </div>
   )
 }
